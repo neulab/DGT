@@ -1,4 +1,4 @@
-### Constructing the missing tokenizer
+## Constructing the missing tokenizer
 
 Since automatic evaluations such as BLEU relies on n-gram counts, having a consistent tokenization
 between training and testing resources is crucial.
@@ -15,7 +15,9 @@ tokenization as the original dataset.
 
 The tokenizer is made in a way that the both ends in the figure below will be as close as possible.
 
-<div style="text-align:center"><img src="img/tokenize.png"></div>
+<p align="center">
+  <img  src="img/tokenize.png">
+</p>
 
 Specifically, we follow the two steps below to simulate the original tokenization.
 

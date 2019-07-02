@@ -36,9 +36,9 @@ The default language is `english`.
 
 ```python
 # Copy and place the file in your project directory, and import in your code
-from tokenizer import tokenize, sent_tokenize
+from tokenizer import word_tokenize, sent_tokenize
 
-tokenize("Vince Carter is a basketball player.", language="english")
+word_tokenize("Vince Carter is a basketball player.", language="english")
 # ['Vince', 'Carter', 'is', 'a', 'basketball', 'player', '.']
 
 sent_tokenize("Vince Carter is a basketball player. Michael Jordan is a basketball player.")
