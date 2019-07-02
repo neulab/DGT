@@ -10,7 +10,7 @@ Participants might want to utilize external resources from the list on the task 
 a word tokenizer and a sentnence tokenizer which were used to create RotoWire Parallel dataset.
 One can apply them on a raw text to get the consistent tokenization as the provided dataset.
 
-##### Requirements
+#### Requirements
 
 Please use python version `>=3.5`. Run `pip install nltk` to install nltk and download punkt models
 by opening up a python interpreter:
@@ -21,7 +21,7 @@ $ python
 >>> nltk.download("punkt")
 ```
 
-##### Usage
+#### Usage
 
 Two functions are defined in `tokenizer.py`.
 
@@ -38,10 +38,10 @@ The default language is `english`.
 # Copy and place the file in your project directory, and import in your code
 from tokenizer import tokenize, sent_tokenize
 
-# >>> tokenize("Vince Carter is a basketball player.", language="english")
+tokenize("Vince Carter is a basketball player.", language="english")
 # ['Vince', 'Carter', 'is', 'a', 'basketball', 'player', '.']
 
-# >>> sent_tokenize("Vince Carter is a basketball player. Michael Jordan is a basketball player.")
+sent_tokenize("Vince Carter is a basketball player. Michael Jordan is a basketball player.")
 # ['Vince Carter is a basketball player.', 'Michael Jordan is a basketball player.']
 ```
 
@@ -57,8 +57,6 @@ the scripts are tested with python 2 and 3.
 Use `scripts/plain2json.py` to convert from plain text to JSON format. This script might be useful
 for the participants in the MT track.
 
-##### Usage
-
 ```sh
 $ python plain2json.py --source-dir /path/to/sentence-by-sentence/translations --target-json output.json
 ```
@@ -67,8 +65,6 @@ $ python plain2json.py --source-dir /path/to/sentence-by-sentence/translations -
 
 Use `scripts/validate_outputs.py` to confirm that the submission file is valid and contains all the
 outputs for evaluation.
-
-##### Usage
 
 ```sh
 $ python validate_outputs.py /path/to/your/submission/file
