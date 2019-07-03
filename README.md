@@ -23,16 +23,20 @@ $ python
 
 #### Usage
 
-Two functions are defined in `tokenizer.py`.
+You can either use it as a script or in your python code. The following command will tokenize sentences 
+in `input.txt` line by line and dumps space-delimited sentences into `output.txt`.
+
+```sh
+$ python tools/tokenizer.py [english|german] < input.txt > output.txt
+```
+
+If used in python code, you can use the following two functions are defined in `tools/tokenizer.py`.
 
 - `word_tokenize(string: str, language: str) -> List[str]`: Tokenize a string into a list of words.
 - `sent_tokenize(string: str, language: str) -> List[str]`: Tokenize a string into a list of sentences.
 
 The second argument can be one of `english` and `german`, depending on the langauge you want to tokenize.
-The default language is `english`.
-
-
-#### Examples
+The default language is `english`. See the examples below:
 
 ```python
 # Copy and place the file in your project directory, and import in your code

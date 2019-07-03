@@ -106,3 +106,10 @@ def detokenize(words: List[str]) -> str:
     detokenized = re.sub(r"(\w{2,})\.(\w{2,})", r"\g<1>. \g<2>", detokenized)
 
     return detokenized
+
+
+if __name__ == "__main__":
+    import sys
+    language = sys.argv[1] if len(sys.argv) > 1 else "english"
+    for line in sys.stdin:
+        print(" ".join(word_tokenize(line, language=language)))
