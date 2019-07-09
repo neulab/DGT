@@ -42,13 +42,18 @@ def word_tokenize(string: str, language: str = "english") -> List[str]:
     string = re.sub(r"\s'(\d+)", r"' \g<1>", string)
 
     # names with Initials (e.g. C. J. Miles)
-    string = re.sub(r"(^|\s)(\w)\. (\w)\.", r"\g<1>\g<2>._\g<3>._", string)
+    string = re.sub(r"(^|\s)(\w)\. (\w)\.", r"\g<1>\g<2>._ \g<3>._", string)
 
     # some dots
     string = string.replace("..", " ..")
 
     # names with apostrophe => expands temporarily
     string = re.sub(r"\w+'(?!d|s|ll|t|re|ve|\s)", r"\g<0>_", string)
+
+    # win-loss scores (German notation seems to be XX:YY, but this is also the time format,
+    # and the times are not tokenized in the original RotoWire. So we manually handle XX:YY
+    # expression.
+    string = re.sub(r"(\d+)-(\d+)", r"\g<1> - \g<2>", string)
 
     # actual tokenization
     tokenized = nltk.word_tokenize(string, language=language)
@@ -57,7 +62,7 @@ def word_tokenize(string: str, language: str = "english") -> List[str]:
     # shrink expanded name-with-apostrophe expressions
     joined = joined.replace("'_", "'")
     # shrink expanded name-with-initial expressions
-    joined = joined.replace("._", ". ")
+    joined = joined.replace("._", ".")
     tokenized = joined.split(" ")
 
     return tokenized
@@ -70,7 +75,7 @@ def sent_tokenize(string: str, language: str = "english") -> List[str]:
     :param language: Language. Either one of ``english'' or ``german''.
     """
     # Initials names
-    string = re.sub(r"(^|\s)(\w)\. (\w)\.", r"\g<1>\g<2>._\g<3>._", string)
+    string = re.sub(r"(^|\s)(\w)\. (\w)\.", r"\g<1>\g<2>._ \g<3>._", string)
 
     # 3Pt.
     string = string.replace("3Pt.", "3Pt._")
@@ -79,7 +84,7 @@ def sent_tokenize(string: str, language: str = "english") -> List[str]:
 
     joined = " || ".join(tokenized)
     # shrink expanded name-with-initial expressions
-    joined = joined.replace("._", ". ")
+    joined = joined.replace("._", ".")
     tokenized = joined.split(" || ")
 
     return tokenized
